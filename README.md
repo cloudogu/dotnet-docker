@@ -1,59 +1,87 @@
-# Featured Repos
+# .NET Core Docker Samples
 
-* [dotnet/core/sdk](https://hub.docker.com/_/microsoft-dotnet-core-sdk/): .NET Core SDK
-* [dotnet/core/aspnet](https://hub.docker.com/_/microsoft-dotnet-core-aspnet/): ASP.NET Core Runtime
-* [dotnet/core/runtime](https://hub.docker.com/_/microsoft-dotnet-core-runtime/): .NET Core Runtime
-* [dotnet/core/runtime-deps](https://hub.docker.com/_/microsoft-dotnet-core-runtime-deps/): .NET Core Runtime Dependencies
-* [dotnet/core/samples](https://hub.docker.com/_/microsoft-dotnet-core-samples/): .NET Core Samples
+The samples show various ways to use .NET Core and Docker together. You can use the samples as the basis of your own Docker images or just to play.
 
-# About .NET Core
+The samples exercise various levels of functionality. The [.NET Core Docker sample](dotnetapp/README.md) includes the most functionality, including build, unit testing, and pushing images to a container registry. The [ASP.NET Core Docker sample](aspnetapp/README.md) includes instructions for testing images with [Azure Container Instances](https://azure.microsoft.com/services/container-instances/). The samples include detailed instructions for use with and without Docker.
 
-[.NET Core](https://docs.microsoft.com/dotnet/core/) is a general purpose development platform maintained by Microsoft and the .NET community on [GitHub](https://github.com/dotnet/core). It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+## Try a pre-built .NET Core Docker Image
 
-.NET has several capabilities that make development easier, including a utomatic memory management, (runtime) generic types, reflection, asynchrony, concurrency, and native interop. Millions of developers take advantage of these capabilities to efficiently build high-quality applications.
+You can quickly run a container with a pre-built [.NET Core Docker image](https://hub.docker.com/_/microsoft-dotnet-core-samples/), based on the [.NET Core console sample](dotnetapp/README.md).
 
-You can use C# to write .NET Core apps. C# is simple, powerful, type-safe, and object-oriented while retaining the expressiveness and elegance of C-style languages. Anyone familiar with C and similar languages will find it straightforward to write in C#.
-
-[.NET Core](https://github.com/dotnet/core) is open source (MIT and Apache 2 licenses) and was contributed to the [.NET Foundation](http://dotnetfoundation.org) by Microsoft in 2014. It can be freely adopted by individuals and companies, including for personal, academic or commercial purposes. Multiple companies use .NET Core as part of apps, tools, new platforms and hosting services.
-
-You are invited to [contribute new features](https://github.com/dotnet/core/blob/master/CONTRIBUTING.md), fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
-
-> https://docs.microsoft.com/dotnet/core/
-
-Watch [dotnet/announcements](https://github.com/dotnet/announcements/labels/Docker) for Docker-related .NET announcements.
-
-# How to Use the Images
-
-The [.NET Core Docker samples](https://github.com/dotnet/dotnet-docker/blob/master/samples/README.md) show various ways to use .NET Core and Docker together. See [Building Docker Images for .NET Core Applications](https://docs.microsoft.com/dotnet/core/docker/building-net-docker-images) to learn more.
-
-## Container sample: Run a simple application
-
-You can quickly run a container with a pre-built [.NET Core Docker image](https://hub.docker.com/_/microsoft-dotnet-core-samples/), based on the [.NET Core console sample](https://github.com/dotnet/dotnet-docker/blob/master/samples/dotnetapp/README.md).
-
-Type the following command to run a sample console application:
+Type the following [Docker](https://www.docker.com/products/docker) command:
 
 ```console
 docker run --rm mcr.microsoft.com/dotnet/core/samples
 ```
 
-## Container sample: Run a web application
+## Try a pre-built ASP.NET Core Docker Image
 
-You can quickly run a container with a pre-built [.NET Core Docker image](https://hub.docker.com/_/microsoft-dotnet-core-samples/), based on the [ASP.NET Core sample](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md).
+You can quickly run a container with a pre-built [sample ASP.NET Core Docker image](https://hub.docker.com/_/microsoft-dotnet-core-samples/), based on this [sample](aspnetapp/Dockerfile).
 
-Type the following command to run a sample web application:
+Type the following command to run a sample with [Docker](https://www.docker.com/products/docker):
 
 ```console
-docker run -it --rm -p 8000:80 --name aspnetcore_sample mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --name aspnetcore_sample --rm -it -p 8000:80 mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-After the application starts, navigate to `http://localhost:8000` in your web browser. On Windows, you may need to navigate to the container via IP address. See [ASP.NET Core apps in Windows Containers](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-windows.md) for instructions on determining the IP address, using the value of `--name` that you used in `docker run`.
+After the application starts, navigate to `http://localhost:8000` in your web browser. On Windows, you may need to navigate to the container via IP address. See [ASP.NET Core apps in Windows Containers](aspnetapp/aspnetcore-docker-windows.md) for instructions on determining the IP address, using the value of `--name` that you used in `docker run`.
 
-See [Hosting ASP.NET Core Images with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https.md) to use HTTPS with this image.
+See [Hosting ASP.NET Core Images with Docker over HTTPS](aspnetapp/aspnetcore-docker-https.md) to use HTTPS with this image.
 
-# Related Repos
+## Building .NET Core Apps with Docker
+
+* [.NET Core Docker Sample](dotnetapp/README.md) - This [sample](dotnetapp/Dockerfile) builds, tests, and runs the sample. It includes and builds multiple projects.
+* [ASP.NET Core Docker Sample](aspnetapp/README.md) - This [sample](aspnetapp/Dockerfile) demonstrates using Docker with an ASP.NET Core Web App.
+
+## Develop .NET Core Apps in a Container
+
+* [Develop .NET Core Applications](dotnetapp/dotnet-docker-dev-in-container.md) - This sample shows how to develop, build and test .NET Core applications with Docker without the need to install the .NET Core SDK.
+* [Develop ASP.NET Core Applications](aspnetapp/aspnet-docker-dev-in-container.md) - This sample shows how to develop and test ASP.NET Core applications with Docker without the need to install the .NET Core SDK.
+
+## Host ASP.NET Core Apps over HTTPS with Docker
+
+* [Hosting ASP.NET Core Images with Docker over HTTPS](aspnetapp/aspnetcore-docker-https.md)
+* [Developing ASP.NET Core Applications with Docker over HTTPS](aspnetapp/aspnetcore-docker-https-development.md)
+
+## Push Images to a Container Registry
+
+* [Push Docker Images to Azure Container Registry](dotnetapp/push-image-to-acr.md)
+* [Push Docker Images to DockerHub](dotnetapp/push-image-to-dockerhub.md)
+* [Deploy ASP.NET Core Applications to Azure Container Instances](aspnetapp/deploy-container-to-aci.md)
+
+## Optimizing Container Size
+
+* [.NET Core Alpine Docker Sample](dotnetapp/README.md) - This [sample](dotnetapp/Dockerfile.alpine-x64) builds, tests, and runs an application using Alpine.
+* [.NET Core self-contained Sample](dotnetapp/dotnet-docker-selfcontained.md) - This [sample](dotnetapp/Dockerfile.debian-x64-selfcontained) builds and runs an application as a self-contained application.
+
+## ARM32 / Raspberry Pi
+
+* [.NET Core ARM32 Docker Sample](dotnetapp/dotnet-docker-arm32.md) - This [sample](dotnetapp/Dockerfile.debian-arm32) builds and runs an application with Debian on ARM32 (works on Raspberry Pi).
+* [ASP.NET Core ARM32 Docker Sample](aspnetapp/README.md) - This [sample](aspnetapp/Dockerfile.debian-arm32) builds and runs an ASP.NET Core application with Debian on ARM32 (works on Raspberry Pi).
+
+## ARM64
+
+* [.NET Core ARM64 Docker Status](dotnetapp/dotnet-docker-arm64.md)
+
+## .NET Core Resources
+
+More Samples
+
+* [.NET Framework Docker Samples](https://github.com/microsoft/dotnet-framework-docker/blob/master/samples/README.md)
+
+Docs and More Information:
+
+* [.NET Docs](https://docs.microsoft.com/dotnet/)
+* [ASP.NET Docs](https://docs.microsoft.com/aspnet/)
+* [dotnet/core](https://github.com/dotnet/core) for starting with .NET Core on GitHub.
+* [dotnet/announcements](https://github.com/dotnet/announcements/issues) for .NET announcements.
+
+## Related Docker Hub Repositories
 
 .NET Core:
 
+* [dotnet/core](https://hub.docker.com/_/microsoft-dotnet-core/): .NET Core
+* [dotnet/core/samples](https://hub.docker.com/_/microsoft-dotnet-core-samples/): .NET Core Samples
 * [dotnet/core-nightly](https://hub.docker.com/_/microsoft-dotnet-core-nightly/): .NET Core (Preview)
 
 .NET Framework:
@@ -61,22 +89,3 @@ See [Hosting ASP.NET Core Images with Docker over HTTPS](https://github.com/dotn
 * [dotnet/framework/aspnet](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet): ASP.NET Web Forms and MVC
 * [microsoft/dotnet-framework](https://hub.docker.com/r/microsoft/dotnet-framework/): .NET Framework
 * [microsoft/dotnet-framework-samples](https://hub.docker.com/r/microsoft/dotnet-framework-samples/): .NET Framework and ASP.NET Samples
-
-# Support
-
-See [Microsoft Support for .NET Core](https://github.com/dotnet/core/blob/master/microsoft-support.md) for the support lifecycle.
-
-# Feedback
-
-* [File a .NET Core Docker issue](https://github.com/dotnet/dotnet-docker/issues)
-* [File a .NET Core issue](https://github.com/dotnet/core/issues)
-* [File an ASP.NET Core issue](https://github.com/aspnet/home/issues)
-* [File an issue for other components](Documentation/core-repos.md)
-* [Ask on Stack Overflow](https://stackoverflow.com/questions/tagged/.net-core)
-* [Contact Microsoft Support](https://support.microsoft.com/contactus/)
-
-# License
-
-* [.NET Core license](https://github.com/dotnet/dotnet-docker/blob/master/LICENSE)
-* [Windows Nano Server license](https://hub.docker.com/r/microsoft/nanoserver/) (only applies to Windows containers)
-* [Pricing and licensing for Windows Server 2019](https://www.microsoft.com/en-us/cloud-platform/windows-server-pricing)
